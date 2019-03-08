@@ -40,6 +40,10 @@ namespace GoogleBooksClient
 
             labelDescription.Text = $"{currentBook.Name}\n{description}\n{string.Join(", ", currentBook.Authors)}";
 
+            foreach (var plugin in Global.Plugins)
+            {
+                plugin.AddFurtherBookItems(panelBookItems, CurrentBook);
+            }
         }
 
         private void CheckBoxFavorit_CheckedChanged(object sender, EventArgs e)

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 
 namespace Contracts
@@ -10,6 +11,6 @@ namespace Contracts
     {
        event EventHandler<string> Error;
 
-       List<IBook> SearchBooks(string searchTerm);
+       Task<List<IBook>> SearchBooks(string searchTerm,CancellationToken token, Action<int> progressCallBack);
     }
 }

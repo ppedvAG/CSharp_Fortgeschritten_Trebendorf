@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Threading;
+using System.Threading.Tasks;
 using BookHelper;
 using Contracts;
 
@@ -9,13 +11,16 @@ namespace GoogleBooksClient
     {
         public event EventHandler<string> Error;
 
-        public List<IBook> SearchBooks(string searchTerm)
+        public async Task<List<IBook>> SearchBooks(string searchTerm, CancellationToken token, Action<int> progressCallBack)
         {
             List<IAuthor> authors = new List<IAuthor>()
             {
                 new Author("J R", "Rowling"),
                 new Author("Daniel", "Default")
             };
+
+
+            await Task.Delay(0);
 
             return new List<IBook>()
             {

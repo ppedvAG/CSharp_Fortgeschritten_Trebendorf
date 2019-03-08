@@ -53,5 +53,8 @@ namespace GoogleBooksClient
             MessageBox.Show(e);
         }
 
+        private static List<IBookPlugin> _plugins;
+        public static List<IBookPlugin> Plugins => _plugins ?? (_plugins = new List<IBookPlugin>());
+
     }
 }

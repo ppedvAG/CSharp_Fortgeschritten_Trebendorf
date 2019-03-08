@@ -19,7 +19,7 @@ namespace GoogleBooksClient
         {
             //Bootstrapping
             //Testmodus
-#if DEBUG
+#if !DEBUG
             //Testmodus
             Global.Container.RegisterType<IBookWebService, MockWebService>();
             Global.Container.RegisterType<IFavoriteManager, MockFavoriteManager>();

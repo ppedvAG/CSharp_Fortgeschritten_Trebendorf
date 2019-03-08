@@ -28,20 +28,20 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
+            this.panelBookItems = new System.Windows.Forms.FlowLayoutPanel();
             this.labelDescription = new System.Windows.Forms.Label();
             this.checkBoxFavorit = new System.Windows.Forms.CheckBox();
-            this.flowLayoutPanel1.SuspendLayout();
+            this.panelBookItems.SuspendLayout();
             this.SuspendLayout();
             // 
             // flowLayoutPanel1
             // 
-            this.flowLayoutPanel1.Controls.Add(this.labelDescription);
-            this.flowLayoutPanel1.Controls.Add(this.checkBoxFavorit);
-            this.flowLayoutPanel1.Location = new System.Drawing.Point(3, 0);
-            this.flowLayoutPanel1.Name = "flowLayoutPanel1";
-            this.flowLayoutPanel1.Size = new System.Drawing.Size(962, 106);
-            this.flowLayoutPanel1.TabIndex = 0;
+            this.panelBookItems.Controls.Add(this.labelDescription);
+            this.panelBookItems.Controls.Add(this.checkBoxFavorit);
+            this.panelBookItems.Location = new System.Drawing.Point(3, 0);
+            this.panelBookItems.Name = "flowLayoutPanel1";
+            this.panelBookItems.Size = new System.Drawing.Size(962, 106);
+            this.panelBookItems.TabIndex = 0;
             // 
             // labelDescription
             // 
@@ -66,18 +66,18 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.Controls.Add(this.flowLayoutPanel1);
+            this.Controls.Add(this.panelBookItems);
             this.Name = "BookDisplayer";
             this.Size = new System.Drawing.Size(968, 109);
-            this.flowLayoutPanel1.ResumeLayout(false);
-            this.flowLayoutPanel1.PerformLayout();
+            this.panelBookItems.ResumeLayout(false);
+            this.panelBookItems.PerformLayout();
             this.ResumeLayout(false);
 
         }
 
         #endregion
 
-        private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel1;
+        private System.Windows.Forms.FlowLayoutPanel panelBookItems;
         private System.Windows.Forms.Label labelDescription;
         private System.Windows.Forms.CheckBox checkBoxFavorit;
     }

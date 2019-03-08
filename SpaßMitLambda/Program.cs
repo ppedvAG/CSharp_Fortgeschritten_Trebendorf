@@ -21,12 +21,30 @@ namespace SpaßMitLambda
             //Filtern
             var ergebnis = Filtern(katzen, AlterGrößerFünf);
 
+            Console.WriteLine("Katzen älter als 5 Jahre: ");
             Filtern(katzen, (Katze katze) => {
+                if (katze.Alter > 5) return true;
+                return false;
+            }).ForEach(k => Console.WriteLine(k.Name));
+
+            Filtern(katzen, katze => {
                 if (katze.Alter > 5) return true;
                 return false;
             });
 
+            Filtern(katzen, katze => {
+                return katze.Alter > 5;
+            });
 
+            Filtern(katzen, katze => katze.Alter > 5);
+
+            katzen.Where(k => k.Alter < 4);
+
+            Console.WriteLine("Katzen alphabetisch sortiert");
+            katzen.OrderBy(k => k.Name).ToList().ForEach(k => Console.WriteLine(k.Name));
+
+
+            Console.ReadKey();
         }
 
         private static bool AlterGrößerFünf(Katze arg)
