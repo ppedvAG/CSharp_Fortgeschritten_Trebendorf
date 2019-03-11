@@ -47,6 +47,7 @@ namespace SpaßMitLambda
             Console.ReadKey();
         }
 
+        //Filterkriterium als extra Methode
         private static bool AlterGrößerFünf(Katze arg)
         {
             if (arg.Alter > 5) return true;
@@ -65,18 +66,5 @@ namespace SpaßMitLambda
             }
             return gefilterteListe;
         }
-    }
-
-    public class Katze
-    {
-        public Katze(string name, int alter)
-        {
-            Name = name;
-            Alter = alter;
-        }
-
-        public string Name { get; set; }
-        public int Alter { get; set; }
-
     }
 }

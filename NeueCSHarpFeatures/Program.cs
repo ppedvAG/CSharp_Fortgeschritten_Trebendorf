@@ -13,7 +13,7 @@ namespace NeueCSHarpFeatures
             List<Action> actions = new List<Action>()
             {
                 PatternMatching,
-                Tupel,
+                TupelUndLokaleFunktion,
                 Default
             };
 
@@ -26,21 +26,29 @@ namespace NeueCSHarpFeatures
             Console.ReadKey();
         }
 
-        private static void Default()
+        private static void PatternMatching()
         {
-            int z;
-            z = 5;
-            if(z == default)
+            object iregndwas = 525;
+
+            if (iregndwas is int zahl)
             {
-                Console.WriteLine("z ist noch 0!");
+                Console.WriteLine(zahl * 2);
             }
+
+            Grafik g = new Kreis() { Umfang = 30 };
+
+            if (g is Kreis kreis && kreis.Umfang > 20)
+            {
+                Console.WriteLine($"Umfang des Kreises: {kreis.Umfang} ");
+            }
+
         }
 
-        private static void Tupel()
+        private static void TupelUndLokaleFunktion()
         {
             var result = Dividiere(20, 0);
-           
-            if(result.hatGeklappt)
+
+            if (result.hatGeklappt)
             {
                 Console.WriteLine($"Ergebnis: {result.ergebnis}");
             }
@@ -55,7 +63,7 @@ namespace NeueCSHarpFeatures
 
             (bool hatGeklappt, double ergebnis) Dividiere(double z1, double z2)
             {
-                if(z2 == 0)
+                if (z2 == 0)
                 {
                     return (false, 0);
                 }
@@ -64,25 +72,14 @@ namespace NeueCSHarpFeatures
 
         }
 
-        private static void PatternMatching()
+        private static void Default()
         {
-            object iregndwas = 525;
-
-            if(iregndwas is int zahl)
+            int z;
+            z = 5;
+            if(z == default)
             {
-                Console.WriteLine(zahl * 2);
+                Console.WriteLine("z ist noch 0!");
             }
-
-            Grafik g = new Kreis() { Umfang = 30};
-
-            if(g is Kreis kreis && kreis.Umfang > 20)
-            {
-                Console.WriteLine($"Umfang des Kreises: {kreis.Umfang} ");
-            }
-
         }
     }
-
-    public class Grafik { }
-    public class Kreis : Grafik { public int Umfang { get; set; } }
 }

@@ -19,7 +19,8 @@ namespace GoogleBooksClient
                 new Author("Daniel", "Default")
             };
 
-
+            //Dieser Aufruf ist notwendig, damit mindestens ein await in der Methoide enthalten ist
+            //ansonsten wird kein Task-Objekt zurückgegebenm wie es im Interface gefordert ist
             await Task.Delay(0);
 
             return new List<IBook>()

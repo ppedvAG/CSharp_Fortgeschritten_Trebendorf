@@ -39,12 +39,6 @@ namespace CountdownTimer
             }
         }
 
-        //Wichtige Befehle:
-        //Thread t1 = new Thread(() => {});
-        //Thread.Sleep(2000);
-        //t1.Start();
-        //t1.Join();
-
         private void button_countdown_ohne_label_click(object sender, EventArgs e)
         {
             //10 Sekunden im Hintergrund unterzählen und dann MessageBox anzeigen
@@ -92,10 +86,15 @@ namespace CountdownTimer
             {
                 _isRunning = true;
                 RemainingTime = 10;
-                _timer = new BetterTimer(() => RemainingTime--, 1000, true, 10, false);
-
+                //Countdown-Timer
+                _timer = new BetterTimer(() => RemainingTime--, 1000, true, 10, false, () => {
+                    MessageBox.Show("Timer ist abgelaufen!");
+                    _isRunning = false;
+                });
                 _timer.Start();
 
+
+                //Button von links nach rechts bewegen
                 BetterTimer secondTimer = null;
 
                 button1.Left = 10;

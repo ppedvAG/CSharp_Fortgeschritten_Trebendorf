@@ -8,14 +8,13 @@ namespace Delegates
 {
     class Program
     {
-        public enum Wochentage { Montag, Dienstag, Mittwoch }
 
         //Signatur für den Delegate-Typen
-        public delegate void EinfacheMethode();
-        public delegate string MethodeMit2Integers(int z1, int z2);
+        public delegate void NoParametersReturnVoid();
+        public delegate string TwoIntegersReturnString(int z1, int z2);
 
-        public delegate void Delegate3(int z1, int z2);
-        public delegate int Delegate4(int[] array);
+        public delegate void TwoIntegersReturnVoid(int z1, int z2);
+        public delegate int IntArrayReturnInteger(int[] array);
 
         static void Main(string[] args)
         {
@@ -27,27 +26,35 @@ namespace Delegates
             Action alleMethoden = EinfachesDelegate;
             alleMethoden += KleineÜbung;
             alleMethoden += GenerischenDelegates;
-            alleMethoden += NeueMethode;
 
             foreach (var method in alleMethoden.GetInvocationList())
             {
-                Console.WriteLine($"{method.Method.Name} wird ausgeführt:");
+                Console.WriteLine($"\n{method.Method.Name} wird ausgeführt:");
                 method.DynamicInvoke();
             }
             
-
-            foreach (var action in actions)
-            {
-                Console.WriteLine($"{action.Method.Name} wird ausgeführt:");
-                action.Invoke();
-            }
-
             Console.ReadKey();
         }
 
-        private static void NeueMethode()
+        #region Szenarien
+        private static void EinfachesDelegate()
         {
-            Console.WriteLine("Dummny");
+            NoParametersReturnVoid einfacheMethode = Ausgabe;
+            einfacheMethode.Invoke();
+
+            TwoIntegersReturnString methodeMit2Integern = Berechne;
+
+            Console.WriteLine($"Ergebnis: {methodeMit2Integern.Invoke(6, 10)}");
+        }
+
+        private static void KleineÜbung()
+        {
+            int[] array = new int[] { 2, 5, 3 };
+            int[] array2 = new int[20];
+
+            TwoIntegersReturnVoid delegate3 = BerechneUndGebeAus;
+            IntArrayReturnInteger delegate4 = LängeDesArrays;
+
         }
 
         private static void GenerischenDelegates()
@@ -69,16 +76,15 @@ namespace Delegates
 
             action.Invoke();
         }
+        #endregion
 
-        private static void KleineÜbung()
+
+        #region Hilfsmethoden
+        private static void NeueMethode()
         {
-            int[] array = new int[] { 2, 5, 3 };
-            int[] array2 = new int[20];
-
-            Delegate3 delegate3 = BerechneUndGebeAus;
-            Delegate4 delegate4 = LängeDesArrays;
-
+            Console.WriteLine("NeueMethode");
         }
+
 
         public static void BerechneUndGebeAus(int z1, int z2)
         {
@@ -90,21 +96,6 @@ namespace Delegates
             return zahlen.Length;
         }
 
-        private static void EinfachesDelegate()
-        {
-            EinfacheMethode einfacheMethode = Ausgabe;
-            einfacheMethode.Invoke();
-
-            //....
-
-            einfacheMethode.Invoke();
-
-            MethodeMit2Integers methodeMit2Integern = Berechne;
-
-
-
-            Console.WriteLine($"Ergebnis: {methodeMit2Integern.Invoke(6, 10)}");
-        }
 
         private static string Berechne(int zahl1, int zahl2)
         {
@@ -113,7 +104,9 @@ namespace Delegates
 
         private static void Ausgabe()
         {
-            Console.WriteLine("Test");
+            Console.WriteLine("Ausgabe");
         }
+        #endregion
+
     }
 }

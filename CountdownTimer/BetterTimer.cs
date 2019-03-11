@@ -33,18 +33,24 @@ namespace CountdownTimer
         /// Wieviele Durchläufe soll es maximal geben?
         /// </summary>
         public int? MaxSteps { get; private set; }
+        /// <summary>
+        /// Auszuführende Aktion nachdem die maximale Anzahl an Schritten durchlaufen wurde
+        /// </summary>
+        public Action FinishAction { get; set; }
 
         Thread _timerThread;
         CancellationTokenSource _cts;
         int _currentSteps = 0;
         Dispatcher _currentThread;
 
-        public BetterTimer(Action action, int interval = 1000, bool isBackground = false, int? maxSteps = null, bool invokeAction = false)
+        public BetterTimer(Action action, int interval = 1000, bool isBackground = false, int? maxSteps = null, bool invokeAction = false, Action finishAction = null)
         {
             IntervalAction = action;
             Interval = interval;
             MaxSteps = maxSteps;
+            IsBackground = isBackground;
             InvokeAction = invokeAction;
+            FinishAction = finishAction;
         }
 
         /// <summary>
@@ -88,10 +94,22 @@ namespace CountdownTimer
                             return;
                         }
                     }
+
+                    if (!InvokeAction)
+                    {
+                        FinishAction?.Invoke();
+                    }
+                    else
+                    {
+                        _currentThread.Invoke(new Action(() => FinishAction?.Invoke()));
+                    }
+                    
                 });
 
                 _cts = new CancellationTokenSource();
 
+                //Threads laufen standardmäßig im Vordergrund, d.h. sie werden nicht automatisch beendet 
+                //wenn der Main-Thread fertig ist
                 _timerThread.IsBackground = IsBackground;
 
                 _currentSteps = 0;
